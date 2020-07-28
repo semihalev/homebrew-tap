@@ -26,7 +26,7 @@ jobs:
      - uses: actions/checkout@v2
      - name: Run brew
        run: |
-         brew update
+         brew update >/dev/null
          brew audit --strict -v ./Formula/*.rb
          brew install -v ./Formula/*.rb
          brew test -v ./Formula/*.rb
