@@ -44,7 +44,7 @@ class Sdns < Formula
     <key>ProgramArguments</key>
     <array>
       <string>#{opt_bin}/sdns</string>
-      <string>-conf</string>
+      <string>-config</string>
       <string>#{etc}/sdns.conf</string>
     </array>
     <key>RunAtLoad</key>
