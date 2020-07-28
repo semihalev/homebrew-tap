@@ -56,7 +56,7 @@ class Sdns < Formula
     <key>StandardOutPath</key>
     <string>#{var}/log/sdns.log</string>
     <key>WorkingDirectory</key>
-    <string>#{HOMEBREW_PREFIX}</string>
+    <string>#{opt_prefix}</string>
   </dict>
 </plist>
 
@@ -64,6 +64,10 @@ class Sdns < Formula
   end
 
   test do
-    system "#{bin}/sdns -v"
+    fork do
+      exec bin/"sdns", "-config", testpath/"sdns.conf"
+    end
+    sleep(2)
+    assert_predicate testpath/"sdns.conf", :exist?
   end
 end
