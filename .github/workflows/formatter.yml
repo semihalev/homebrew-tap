@@ -8,8 +8,8 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.6
-    - run: gem install rufo
-    - run: rufo --loglevel=debug -x .
+    - run: gem install rubocop
+    - run: rubocop -a
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
