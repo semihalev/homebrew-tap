@@ -7,19 +7,19 @@ class Sdns < Formula
 
   if OS.mac?
     url "https://github.com/semihalev/sdns/releases/download/v1.1.4/sdns-1.1.4_darwin_amd64.tar.gz"
-    sha256 "df568caefc1ddc64681c95d33493c08392217cb6cd6b359074233ebbb5528e3b"
+    sha256 "7af5b2be5ca36e46c694c4f29e657c50507d4e227c37204cc01a7bfe24b4d0ac"
   elsif OS.linux?
     if Hardware::CPU.intel?
       url "https://github.com/semihalev/sdns/releases/download/v1.1.4/sdns-1.1.4_linux_amd64.tar.gz"
-      sha256 "f08d5fefe5bc48e92de2caf3258f950c92df6f762b90a2c49fff40cb1d173ce5"
+      sha256 "bb24e649d20c4dad50f0685ec35060e7ff297701c0a3e43561681f1eae0132eb"
     end
     if Hardware::CPU.arm?
       if Hardware::CPU.is_64_bit?
         url "https://github.com/semihalev/sdns/releases/download/v1.1.4/sdns-1.1.4_linux_arm64.tar.gz"
-        sha256 "88093cb6a63616c0bbb9f55e3072fe53d0df38e548b51618dcf06ce90f3b399f"
+        sha256 "04f07246c3f46b005dc4881ceef872d74942131b3225ae6945320c39f4379616"
       else
         url "https://github.com/semihalev/sdns/releases/download/v1.1.4/sdns-1.1.4_linux_armv6.tar.gz"
-        sha256 "8dbe6fd93457bfbd635a5628d6e76cdc04701f26f7b4fb561ee561013aa75cc0"
+        sha256 "457c62fba9e7d1c913746f39d792f0f4f7cc478e548b5d32e8a82f8512f161f5"
       end
     end
   end
