@@ -9,7 +9,7 @@ jobs:
       with:
         ruby-version: 2.6.3
     - run: gem install rubocop
-    - run: rubocop -a -f tap --except Style/StringLiterals
+    - run: rubocop -a -f tap --except Style/StringLiterals,Style/FrozenStringLiteralComment,Naming/HeredocDelimiterNaming
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
