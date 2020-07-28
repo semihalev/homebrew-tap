@@ -23,7 +23,7 @@ class Sdns < Formula
       end
     end
   end
-  
+
   depends_on "go" => :build
 
   def install
@@ -33,8 +33,8 @@ class Sdns < Formula
   plist_options :startup => false
 
   def plist; <<~EOS
-    <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
     <key>Label</key>
@@ -58,14 +58,13 @@ class Sdns < Formula
   </dict>
 </plist>
 
-  EOS
-  end
+  EOS   end
 
   test do
     fork do
-      exec bin/"sdns", "-config", testpath/"sdns.conf"
+      exec bin / "sdns", "-config", testpath / "sdns.conf"
     end
     sleep(2)
-    assert_predicate testpath/"sdns.conf", :exist?
+    assert_predicate testpath / "sdns.conf", :exist?
   end
 end
