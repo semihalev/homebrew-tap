@@ -24,8 +24,6 @@ class Sdns < Formula
     end
   end
   
-  head "https://github.com/semihalev/sdns.git"
-  
   depends_on "go" => :build
 
   def install
