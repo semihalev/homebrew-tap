@@ -1,4 +1,4 @@
-name: Formatter
+name: Tap
 on: [push]
 jobs:
   format:
@@ -19,3 +19,15 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        
+  ci:
+   runs-on: macos-latest
+   steps:
+     - uses: actions/checkout@v2
+     - name: run brew
+       run: |
+         brew update >/dev/null
+         brew audit ./Formula/*.rb
+         brew install -v ./Formula/*.rb
+         brew test ./Formula/*.rb
+   
