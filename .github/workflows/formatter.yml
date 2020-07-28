@@ -9,8 +9,7 @@ jobs:
       with:
         ruby-version: 2.6
     - run: gem install rufo
-    - run: rufo .
-      
+    - run: rufo --loglevel=debug -x .
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
