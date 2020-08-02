@@ -24,8 +24,11 @@ jobs:
    runs-on: macos-latest
    steps:
      - uses: actions/checkout@v2
+       with:
+        fetch-depth: 2
      - name: Run brew
        run: |
+         git checkout HEAD^
          brew update >/dev/null
          brew audit --strict -v ./Formula/*.rb
          brew install -v ./Formula/*.rb
