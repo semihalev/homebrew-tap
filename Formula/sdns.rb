@@ -30,30 +30,30 @@ class Sdns < Formula
 
   def plist
     <<~EOS
-                <?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-            <plist version="1.0">
-              <dict>
-                <key>Label</key>
-                <string>#{plist_name}</string>
-                <key>ProgramArguments</key>
-                <array>
-                  <string>#{opt_bin}/sdns</string>
-                  <string>-config</string>
-                  <string>#{etc}/sdns.conf</string>
-                </array>
-                <key>RunAtLoad</key>
-                <true/>
-                <key>KeepAlive</key>
-                <true/>
-                <key>StandardErrorPath</key>
-                <string>#{var}/log/sdns.log</string>
-                <key>StandardOutPath</key>
-                <string>#{var}/log/sdns.log</string>
-                <key>WorkingDirectory</key>
-                <string>#{opt_prefix}</string>
-              </dict>
-            </plist>
+          <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+        <dict>
+          <key>Label</key>
+          <string>#{plist_name}</string>
+          <key>ProgramArguments</key>
+          <array>
+            <string>#{opt_bin}/sdns</string>
+            <string>-config</string>
+            <string>#{etc}/sdns.conf</string>
+          </array>
+          <key>RunAtLoad</key>
+          <true/>
+          <key>KeepAlive</key>
+          <true/>
+          <key>StandardErrorPath</key>
+          <string>#{var}/log/sdns.log</string>
+          <key>StandardOutPath</key>
+          <string>#{var}/log/sdns.log</string>
+          <key>WorkingDirectory</key>
+          <string>#{opt_prefix}</string>
+        </dict>
+      </plist>
     EOS
   end
 
