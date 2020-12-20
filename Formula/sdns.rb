@@ -54,7 +54,6 @@ class Sdns < Formula
                 <string>#{opt_prefix}</string>
               </dict>
             </plist>
-      #{'      '}
     EOS
   end
 
