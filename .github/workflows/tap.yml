@@ -25,10 +25,10 @@ jobs:
    steps:
      - uses: actions/checkout@v2
        with:
-        fetch-depth: 2
+        fetch-depth: 0
      - name: Run brew
        run: |
-         git checkout HEAD^
+         git checkout master
          brew update >/dev/null
          brew audit --strict -v ./Formula/*.rb
          brew install -v ./Formula/*.rb
