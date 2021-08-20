@@ -34,8 +34,6 @@ class Sdns < Formula
     end
   end
 
-  depends_on "go" => :build
-
   def install
     bin.install "sdns"
   end
