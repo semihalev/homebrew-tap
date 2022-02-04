@@ -5,20 +5,20 @@
 class Sdns < Formula
   desc "Privacy important, fast, recursive dns resolver server with dnssec support"
   homepage "https://sdns.dev"
-  version "1.2.0"
+  version "1.2.1"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/semihalev/sdns/releases/download/v1.2.0/sdns-1.2.0_darwin_amd64.tar.gz"
-      sha256 "6ec6f3a2182a600312e1d32ccb6693818087a67fe6977fee6cab2b638baa6914"
+    if Hardware::CPU.arm?
+      url "https://github.com/semihalev/sdns/releases/download/v1.2.1/sdns-1.2.1_darwin_arm64.tar.gz"
+      sha256 "8de1482627c071a673b2c73466cd5d7e3ca05fb8e820a13efb2cf9ec43c5d9ad"
 
       def install
         bin.install "sdns"
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/semihalev/sdns/releases/download/v1.2.0/sdns-1.2.0_darwin_arm64.tar.gz"
-      sha256 "9354fbae48d43a0841e0123d74b3ace3ca41a45019da52a1e940f936721d4909"
+    if Hardware::CPU.intel?
+      url "https://github.com/semihalev/sdns/releases/download/v1.2.1/sdns-1.2.1_darwin_amd64.tar.gz"
+      sha256 "503ae909cc08cb4f12154e93e2d6d5f1a89f2c1cd93a9c50bb6edf03c0a57691"
 
       def install
         bin.install "sdns"
@@ -27,25 +27,25 @@ class Sdns < Formula
   end
 
   on_linux do
+    if Hardware::CPU.intel?
+      url "https://github.com/semihalev/sdns/releases/download/v1.2.1/sdns-1.2.1_linux_amd64.tar.gz"
+      sha256 "a44344f1015c53c590d4355761f82975b2cba405824d16c01cf9944bbc97a807"
+
+      def install
+        bin.install "sdns"
+      end
+    end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/semihalev/sdns/releases/download/v1.2.0/sdns-1.2.0_linux_armv6.tar.gz"
-      sha256 "a3da007f045d54abbb1b3547cd80061ddd0450c811561515bf1a0d44152f15a0"
+      url "https://github.com/semihalev/sdns/releases/download/v1.2.1/sdns-1.2.1_linux_armv6.tar.gz"
+      sha256 "9180e902a3ea3889b41e5efd872557b1c57b6604fb1d9443513530a27f789b36"
 
       def install
         bin.install "sdns"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/semihalev/sdns/releases/download/v1.2.0/sdns-1.2.0_linux_arm64.tar.gz"
-      sha256 "d7acc05dbeb391d89d0746fd7bf39abe3c90ed610423453ff5324e4fc2281b6c"
-
-      def install
-        bin.install "sdns"
-      end
-    end
-    if Hardware::CPU.intel?
-      url "https://github.com/semihalev/sdns/releases/download/v1.2.0/sdns-1.2.0_linux_amd64.tar.gz"
-      sha256 "74cd6702c1ab051a5ab8a74bc172ca431b4a61f7effadc1ccd57a6969468a5d2"
+      url "https://github.com/semihalev/sdns/releases/download/v1.2.1/sdns-1.2.1_linux_arm64.tar.gz"
+      sha256 "4125f473d1ea95aaaca0033ae95e4fca6408cc3bd4523f99da0a09ad95e92c11"
 
       def install
         bin.install "sdns"
@@ -55,43 +55,42 @@ class Sdns < Formula
 
   depends_on "go" => :build
 
-  plist_options startup: false
+  plist_options :startup => false
 
-  def plist
-    <<~EOS
-          <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-        <dict>
-          <key>Label</key>
-          <string>#{plist_name}</string>
-          <key>ProgramArguments</key>
-          <array>
-            <string>#{opt_bin}/sdns</string>
-            <string>-config</string>
-            <string>#{etc}/sdns.conf</string>
-          </array>
-          <key>RunAtLoad</key>
-          <true/>
-          <key>KeepAlive</key>
-          <true/>
-          <key>StandardErrorPath</key>
-          <string>#{var}/log/sdns.log</string>
-          <key>StandardOutPath</key>
-          <string>#{var}/log/sdns.log</string>
-          <key>WorkingDirectory</key>
-          <string>#{opt_prefix}</string>
-        </dict>
-      </plist>
+  def plist; <<~EOS
+    <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>#{plist_name}</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>#{opt_bin}/sdns</string>
+      <string>-config</string>
+      <string>#{etc}/sdns.conf</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>#{var}/log/sdns.log</string>
+    <key>StandardOutPath</key>
+    <string>#{var}/log/sdns.log</string>
+    <key>WorkingDirectory</key>
+    <string>#{opt_prefix}</string>
+  </dict>
+</plist>
 
-    EOS
+  EOS
   end
 
   test do
     fork do
-      exec bin / "sdns", "-config", testpath / "sdns.conf"
+      exec bin/"sdns", "-config", testpath/"sdns.conf"
     end
     sleep(2)
-    assert_predicate testpath / "sdns.conf", :exist?
+    assert_predicate testpath/"sdns.conf", :exist?
   end
 end
