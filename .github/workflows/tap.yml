@@ -7,7 +7,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6.3
+        ruby-version: 2.7.0
     - run: gem install rubocop
     - run: rubocop -a -f tap --except Style/StringLiterals,Style/FrozenStringLiteralComment,Naming/HeredocDelimiterNaming
     - name: Commit files
