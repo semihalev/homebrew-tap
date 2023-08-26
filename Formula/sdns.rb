@@ -56,19 +56,19 @@ class Sdns < Formula
   end
 
   service do
-    run [opt_bin/"sdns", "-config", etc/"sdns.conf"]
+    run [opt_bin / "sdns", "-config", etc / "sdns.conf"]
     keep_alive true
     require_root true
-    error_log_path var/"log/sdns.log"
-    log_path var/"log/sdns.log"
+    error_log_path var / "log/sdns.log"
+    log_path var / "log/sdns.log"
     working_dir opt_prefix
   end
 
   test do
     fork do
-      exec bin/"sdns", "-config", testpath/"sdns.conf"
+      exec bin / "sdns", "-config", testpath / "sdns.conf"
     end
     sleep(2)
-    assert_predicate testpath/"sdns.conf", :exist?
+    assert_predicate testpath / "sdns.conf", :exist?
   end
 end
