@@ -29,52 +29,46 @@ class Sdns < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      if Hardware::CPU.is_64_bit?
-        url "https://github.com/semihalev/sdns/releases/download/v1.4.0/sdns-1.4.0_linux_amd64.tar.gz"
-        sha256 "9166b96eb06ee07a8e6a881ccf7bb806e32bb646704c03916e990f93fe68e308"
+    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
+      url "https://github.com/semihalev/sdns/releases/download/v1.4.0/sdns-1.4.0_linux_amd64.tar.gz"
+      sha256 "9166b96eb06ee07a8e6a881ccf7bb806e32bb646704c03916e990f93fe68e308"
 
-        def install
-          bin.install "sdns"
-        end
+      def install
+        bin.install "sdns"
       end
     end
-    if Hardware::CPU.arm?
-      if !Hardware::CPU.is_64_bit?
-        url "https://github.com/semihalev/sdns/releases/download/v1.4.0/sdns-1.4.0_linux_armv6.tar.gz"
-        sha256 "567c3da80b0b2d7b595a367e2de470ce3dad3d629e2732e9a35959d2ec369e49"
+    if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
+      url "https://github.com/semihalev/sdns/releases/download/v1.4.0/sdns-1.4.0_linux_armv6.tar.gz"
+      sha256 "567c3da80b0b2d7b595a367e2de470ce3dad3d629e2732e9a35959d2ec369e49"
 
-        def install
-          bin.install "sdns"
-        end
+      def install
+        bin.install "sdns"
       end
     end
-    if Hardware::CPU.arm?
-      if Hardware::CPU.is_64_bit?
-        url "https://github.com/semihalev/sdns/releases/download/v1.4.0/sdns-1.4.0_linux_arm64.tar.gz"
-        sha256 "a209e666b99e3a88ef9c6ef8c6f5881200e87f66ff7630ef8809acfe0c014c43"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/semihalev/sdns/releases/download/v1.4.0/sdns-1.4.0_linux_arm64.tar.gz"
+      sha256 "a209e666b99e3a88ef9c6ef8c6f5881200e87f66ff7630ef8809acfe0c014c43"
 
-        def install
-          bin.install "sdns"
-        end
+      def install
+        bin.install "sdns"
       end
     end
   end
 
   service do
-    run [opt_bin/"sdns", "-config", etc/"sdns.conf"]
+    run [opt_bin / "sdns", "-config", etc / "sdns.conf"]
     keep_alive true
     require_root true
-    error_log_path var/"log/sdns.log"
-    log_path var/"log/sdns.log"
+    error_log_path var / "log/sdns.log"
+    log_path var / "log/sdns.log"
     working_dir opt_prefix
   end
 
   test do
     fork do
-      exec bin/"sdns", "-config", testpath/"sdns.conf"
+      exec bin / "sdns", "-config", testpath / "sdns.conf"
     end
     sleep(2)
-    assert_predicate testpath/"sdns.conf", :exist?
+    assert_predicate testpath / "sdns.conf", :exist?
   end
 end
