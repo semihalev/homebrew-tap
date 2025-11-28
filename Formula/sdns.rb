@@ -5,22 +5,22 @@
 class Sdns < Formula
   desc "A high-performance, recursive DNS resolver server with DNSSEC support, focused on preserving privacy"
   homepage "https://sdns.dev"
-  version "1.6.0"
+  version "1.6.1"
 
   depends_on "go" => :build
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/semihalev/sdns/releases/download/v1.6.0/sdns-1.6.0_darwin_amd64.tar.gz"
-      sha256 "e385f6c1fae69011a9f7c428ef0ba3a8d75fd8d844ee4e8e58f59ff8977c7121"
+      url "https://github.com/semihalev/sdns/releases/download/v1.6.1/sdns-1.6.1_darwin_amd64.tar.gz"
+      sha256 "bb0bd5c490a101702817035bdd202a7c269f13173c253907f463e72f691876ad"
 
       def install
         bin.install "sdns"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/semihalev/sdns/releases/download/v1.6.0/sdns-1.6.0_darwin_arm64.tar.gz"
-      sha256 "353c5eab08ca3a146270abc8d274fdd93482c7d78c3d53550151fbd605bcb2b2"
+      url "https://github.com/semihalev/sdns/releases/download/v1.6.1/sdns-1.6.1_darwin_arm64.tar.gz"
+      sha256 "901c271b75247290855b4ae434d80cf00fc2032dc2db02222ce0333f8648e773"
 
       def install
         bin.install "sdns"
@@ -29,23 +29,23 @@ class Sdns < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel? and Hardware::CPU.is_64_bit?
-      url "https://github.com/semihalev/sdns/releases/download/v1.6.0/sdns-1.6.0_linux_amd64.tar.gz"
-      sha256 "076fa724a050c7b986a658bdf64350f17eb0a8df5f5b6d169aad62680d5ab5e8"
+    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
+      url "https://github.com/semihalev/sdns/releases/download/v1.6.1/sdns-1.6.1_linux_amd64.tar.gz"
+      sha256 "c8ef8ed8daf5ce1806cee1218a45f35be5801709c9ade37bd69d186623de3dbe"
       def install
         bin.install "sdns"
       end
     end
-    if Hardware::CPU.arm? and !Hardware::CPU.is_64_bit?
-      url "https://github.com/semihalev/sdns/releases/download/v1.6.0/sdns-1.6.0_linux_armv6.tar.gz"
-      sha256 "d2b53d392d1a96c1c9cad68a8ca33902dedf212be87ec8a9bd7914b156e6282e"
+    if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
+      url "https://github.com/semihalev/sdns/releases/download/v1.6.1/sdns-1.6.1_linux_armv6.tar.gz"
+      sha256 "621f4271235688c0626d712b2b3c5bb1b34be840cc46e985d0fe3f6ee1f42135"
       def install
         bin.install "sdns"
       end
     end
-    if Hardware::CPU.arm? and Hardware::CPU.is_64_bit?
-      url "https://github.com/semihalev/sdns/releases/download/v1.6.0/sdns-1.6.0_linux_arm64.tar.gz"
-      sha256 "ac327ee66c981d859db1e96658d274aa81a06b3b9cc5dd3720535d010ccc37e0"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/semihalev/sdns/releases/download/v1.6.1/sdns-1.6.1_linux_arm64.tar.gz"
+      sha256 "a1411af26196b192ca3ee56e45f5fea266b51a51e96ad2e49fd13fbd3c7d9632"
       def install
         bin.install "sdns"
       end
