@@ -12,7 +12,7 @@ class Sdns < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/semihalev/sdns/releases/download/v1.8.0/sdns-1.8.0_darwin_amd64.tar.gz"
-      sha256 "9d392635d3638d3cfa4c4ffadaf9b45fe77e06130c3853d0a2636e4f5d1366f6"
+      sha256 "36566c32130f6f36385d9d85c10899e43cc57586cfb3dc338f8aff4172f05a38"
 
       define_method(:install) do
         bin.install "sdns"
@@ -20,7 +20,7 @@ class Sdns < Formula
     end
     if Hardware::CPU.arm?
       url "https://github.com/semihalev/sdns/releases/download/v1.8.0/sdns-1.8.0_darwin_arm64.tar.gz"
-      sha256 "ccb950f06ed8323bcfddb78f7e90a9955c49b500943cb3ac3fe564f56799d9df"
+      sha256 "d5c87293d87559897f799b19987339c308d24ac80cf7f5c78f8527473d2eeb3b"
 
       define_method(:install) do
         bin.install "sdns"
@@ -31,21 +31,21 @@ class Sdns < Formula
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
       url "https://github.com/semihalev/sdns/releases/download/v1.8.0/sdns-1.8.0_linux_amd64.tar.gz"
-      sha256 "8b9e1c8598ae2e4d1739755fa5e6fbc66ea9d78c38edc912f0de057ddae66195"
+      sha256 "8b5eb3a644f3354dafcb2bcd1999875aa0dca5bdf47ebf153d9677421e1f2c43"
       define_method(:install) do
         bin.install "sdns"
       end
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
       url "https://github.com/semihalev/sdns/releases/download/v1.8.0/sdns-1.8.0_linux_armv6.tar.gz"
-      sha256 "266de62a92a282f1477674ea00ef5ececb727604ab1cf0438a3f294f624953d2"
+      sha256 "e61608f00a38a84f99b0c93404c039a4973eecab0996382490eb00b9fd7289ef"
       define_method(:install) do
         bin.install "sdns"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/semihalev/sdns/releases/download/v1.8.0/sdns-1.8.0_linux_arm64.tar.gz"
-      sha256 "c4b0f42051469f771709f9fcc865656dc6533fb4e5d11bf278838e1cc7814efe"
+      sha256 "e34a83e69fb71463cdcad6e483457db9655a4788257cfad36bfb11f655a83cbf"
       define_method(:install) do
         bin.install "sdns"
       end
